@@ -24,10 +24,13 @@ public interface EnvironmentalMeasureMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "createdBy", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
-    @Mapping(target = "temperature", source = "target.temperature")
-    @Mapping(target = "temperatureUnit", source = "target.temperatureUnit")
+    @Mapping(target = "heatIndex", source = "target.heatIndex")
     @Mapping(target = "humidity", source = "target.humidity")
     @Mapping(target = "measurementDateTaken", source = "target.timestamp")
+    @Mapping(target = "observation", source = "target.observation")
+    @Mapping(target = "soilMoisture", source = "target.soilMoisture")
+    @Mapping(target = "temperature", source = "target.temperature")
+    @Mapping(target = "temperatureUnit", source = "target.temperatureUnit")
     EnvironmentalMeasurement avroDtoWrappedToMongoDocument(EnvironmentalConversionWrapper.Target target, String kafkaKey);
 
     default EnvironmentalMeasurement kafkaConsumerRecordToMongoDocument(ConsumerRecord<String, byte[]> environmentConsumerRecord) {
